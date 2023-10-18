@@ -64,6 +64,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class ArgumentProcessor {
+    //TODO Test
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ArgumentProcessor.class);
     private final JabRefCLI cli;
@@ -455,11 +456,11 @@ public class ArgumentProcessor {
             switch (data.length) {
                 case 3 -> formatName = data[2];
                 case 2 ->
-                        // default exporter: bib file
+                    // default exporter: bib file
                         formatName = "bib";
                 default -> {
                     System.err.println(Localization.lang("Output file missing").concat(". \n \t ")
-                                                   .concat(Localization.lang("Usage")).concat(": ") + JabRefCLI.getExportMatchesSyntax());
+                            .concat(Localization.lang("Usage")).concat(": ") + JabRefCLI.getExportMatchesSyntax());
                     noGUINeeded = true;
                     return false;
                 }
@@ -612,7 +613,7 @@ public class ArgumentProcessor {
                 // Show just a warning message if encoding did not work for all characters:
                 if (fileWriter.hasEncodingProblems()) {
                     System.err.println(Localization.lang("Warning") + ": "
-                                       + Localization.lang("UTF-8 could not be used to encode the following characters: %0", fileWriter.getEncodingProblems()));
+                            + Localization.lang("UTF-8 could not be used to encode the following characters: %0", fileWriter.getEncodingProblems()));
                 }
             }
         } catch (IOException ex) {
@@ -745,8 +746,8 @@ public class ArgumentProcessor {
                 preferencesService.getImportFormatPreferences(),
                 preferencesService.getImporterPreferences());
         Optional<SearchBasedFetcher> selectedFetcher = fetchers.stream()
-                                                               .filter(fetcher -> fetcher.getName().equalsIgnoreCase(engine))
-                                                               .findFirst();
+                .filter(fetcher -> fetcher.getName().equalsIgnoreCase(engine))
+                .findFirst();
         if (selectedFetcher.isEmpty()) {
             System.out.println(Localization.lang("Could not find fetcher '%0'", engine));
 
